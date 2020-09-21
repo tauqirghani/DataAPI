@@ -43,7 +43,6 @@ namespace DataAPI
 
             app.UseEndpoints(endpoints =>
             {
-                //                endpoints.MapControllers().RequireAuthorization();
                 endpoints.MapControllers();
             });
             using (var servicescope = app.ApplicationServices.CreateScope())
