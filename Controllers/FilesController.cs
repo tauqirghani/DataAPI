@@ -14,7 +14,6 @@ namespace DataAPI.Controllers
     [Authorize]
     public class FilesController : ControllerBase
     {
-
         [HttpGet("{fileid}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
