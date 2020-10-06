@@ -24,7 +24,6 @@ namespace DataAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<FileContext>(opt => opt.UseInMemoryDatabase("Files"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,43 +44,6 @@ namespace DataAPI
             {
                 endpoints.MapControllers();
             });
-            using (var servicescope = app.ApplicationServices.CreateScope())
-            {
-                var context = servicescope.ServiceProvider.GetService<FileContext>();
-                AddTestData(context);
-            }
-        }
-        private static void AddTestData(FileContext context)
-        {
-            var testFile1 = new File
-            {
-                fileId = 101,
-                name = "File 101",
-                fileNumber = "101101",
-                status = "Open",
-                totalSalesPrice = 100000.0,
-                openDate = DateTime.Parse("2020-03-21T21:15:27.659Z"),
-                closeDate = DateTime.Parse("2020-03-28T21:15:27.659Z"),
-                transactionType = "Sale w/Cash"
-            };
-
-            context.Files.Add(testFile1);
-
-            var testFile2 = new File
-            {
-                fileId = 202,
-                name = "File 202",
-                fileNumber = "202202",
-                status = "Open",
-                totalSalesPrice = 200000.0,
-                openDate = DateTime.Parse("2020-03-21T21:15:27.659Z"),
-                closeDate = DateTime.Parse("2020-03-28T21:15:27.659Z"),
-                transactionType = "Sale w/Mortgage"
-            };
-
-            context.Files.Add(testFile2);
-
-            context.SaveChanges();
         }
     }
 }
