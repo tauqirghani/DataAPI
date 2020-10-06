@@ -11,7 +11,7 @@ namespace DataAPI.Controllers
 {
     [Route("data/v1/[controller]")]
     [ApiController]
-//    [Authorize]
+    [Authorize]
     public class FilesController : ControllerBase
     {
 
